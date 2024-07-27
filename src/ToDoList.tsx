@@ -30,8 +30,12 @@ import { useForm } from "react-hook-form";
 //   );
 // }
 
-interface FormData {
-  [key: string]: string;
+interface IForm {
+  email: string;
+  password: string;
+  username: string;
+  age: string;
+  region: string;
 }
 
 function ToDoList() {
@@ -39,7 +43,9 @@ function ToDoList() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<IForm>({
+    defaultValues: { email: "naver.com" },
+  });
   const onValid = () => {};
   return (
     <div>
