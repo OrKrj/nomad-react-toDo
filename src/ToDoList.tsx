@@ -46,7 +46,7 @@ function ToDoList() {
       <form onSubmit={handleSubmit(onValid)}>
         <input
           {...register("email", {
-            required: true,
+            required: "Email is required",
             pattern: {
               value: /^[A-Za-z0-9._%+-]+@naver.com$/,
               message: "Only naver email is allowed",
