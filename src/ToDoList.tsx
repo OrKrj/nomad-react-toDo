@@ -65,15 +65,25 @@ function ToDoList() {
           })}
           placeholder="password"
         />
+        <span>{errors?.password?.message}</span>
         <input
-          {...(register("username"), { required: true, minLength: 10 })}
+          {...register("username", {
+            required: "username is required",
+            minLength: 10,
+          })}
           placeholder="username"
         />
-        <input {...(register("age"), { required: true })} placeholder="age" />
+        <span>{errors?.username?.message}</span>
         <input
-          {...(register("region"), { required: true })}
+          {...register("age", { required: "age is required" })}
+          placeholder="age"
+        />
+        <span>{errors?.age?.message}</span>
+        <input
+          {...register("region", { required: "region is required" })}
           placeholder="region"
         />
+        <span>{errors?.region?.message}</span>
         <button>Add</button>
       </form>
     </div>
