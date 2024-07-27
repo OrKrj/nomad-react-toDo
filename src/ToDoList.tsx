@@ -30,16 +30,31 @@ import { useForm } from "react-hook-form";
 //   );
 // }
 
+interface FormData {
+  [key: string]: string;
+}
+
 function ToDoList() {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
   const onValid = () => {};
   return (
     <div>
       <form onSubmit={handleSubmit(onValid)}>
         <input
-          {...(register("email"), { required: true })}
+          {...register("email", {
+            required: true,
+            pattern: {
+              value: /^[A-Za-z0-9._%+-]+@naver.com$/,
+              message: "Only naver email is allowed",
+            },
+          })}
           placeholder="email"
         />
+        <span>{errors?.email?.message}</span>
         <input
           {...register("password", {
             required: "password is required",
