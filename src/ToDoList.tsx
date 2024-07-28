@@ -51,8 +51,8 @@ function ToDoList() {
   const onValid = (data: IForm) => {
     if (data.password1 !== data.password2) {
       setError(
-        "password1",
-        { message: "Passwords are not same" },
+        "password2",
+        { message: "Password is not same" },
         { shouldFocus: true }
       );
     }
@@ -75,7 +75,7 @@ function ToDoList() {
           {...register("password1", {
             required: "password1 is required",
             minLength: {
-              value: 15,
+              value: 8,
               message: "Your password is too short.",
             },
           })}
@@ -86,7 +86,7 @@ function ToDoList() {
           {...register("password2", {
             required: "password2 is required",
             minLength: {
-              value: 15,
+              value: 8,
               message: "Your password is too short.",
             },
           })}
@@ -96,16 +96,13 @@ function ToDoList() {
         <input
           {...register("username", {
             required: "username is required",
-            minLength: 10,
+            minLength: 3,
             validate: {
               noZunsama: (value) =>
-                value.includes("zunsama")
-                  ? "Can't use 'zunsama' as a username"
-                  : true,
+                !value.includes("zunsama") ||
+                "Can't use 'zunsama' as a username",
               doNotIncludeZun: (value) =>
-                value.includes("zun")
-                  ? "Can't include 'zun' at a username"
-                  : true,
+                !value.includes("zun") || "Can't include 'zun' at a username",
             },
           })}
           placeholder="username"
