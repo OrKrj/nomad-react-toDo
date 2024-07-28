@@ -32,7 +32,8 @@ import { useForm } from "react-hook-form";
 
 interface IForm {
   email: string;
-  password: string;
+  password1: string;
+  password2: string;
   username: string;
   age: string;
   region: string;
@@ -43,10 +44,19 @@ function ToDoList() {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm<IForm>({
     defaultValues: { email: "naver.com" },
   });
-  const onValid = () => {};
+  const onValid = (data: IForm) => {
+    if (data.password1 !== data.password2) {
+      setError(
+        "password1",
+        { message: "Passwords are not same" },
+        { shouldFocus: true }
+      );
+    }
+  };
   return (
     <div>
       <form onSubmit={handleSubmit(onValid)}>
@@ -62,8 +72,8 @@ function ToDoList() {
         />
         <span>{errors?.email?.message}</span>
         <input
-          {...register("password", {
-            required: "password is required",
+          {...register("password1", {
+            required: "password1 is required",
             minLength: {
               value: 15,
               message: "Your password is too short.",
@@ -71,7 +81,18 @@ function ToDoList() {
           })}
           placeholder="password"
         />
-        <span>{errors?.password?.message}</span>
+        <span>{errors?.password1?.message}</span>
+        <input
+          {...register("password2", {
+            required: "password2 is required",
+            minLength: {
+              value: 15,
+              message: "Your password is too short.",
+            },
+          })}
+          placeholder="password"
+        />
+        <span>{errors?.password2?.message}</span>
         <input
           {...register("username", {
             required: "username is required",
