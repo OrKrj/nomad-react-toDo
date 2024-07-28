@@ -97,10 +97,16 @@ function ToDoList() {
           {...register("username", {
             required: "username is required",
             minLength: 10,
-            validate: (value) =>
-              !value.includes("zunsama")
-                ? "Can't use 'zunsama' as username"
-                : true,
+            validate: {
+              noZunsama: (value) =>
+                value.includes("zunsama")
+                  ? "Can't use 'zunsama' as a username"
+                  : true,
+              doNotIncludeZun: (value) =>
+                value.includes("zun")
+                  ? "Can't include 'zun' at a username"
+                  : true,
+            },
           })}
           placeholder="username"
         />
