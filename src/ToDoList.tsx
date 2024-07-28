@@ -97,6 +97,7 @@ function ToDoList() {
           {...register("username", {
             required: "username is required",
             minLength: 10,
+            validate: (value) => !value.includes("zunsama"),
           })}
           placeholder="username"
         />
