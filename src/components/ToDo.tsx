@@ -22,17 +22,17 @@ function ToDo({ text, category, id }: IToDo) {
     <li>
       <span>{text}</span>
       {category !== Categories.Doing && (
-        <button name={Categories.Doing + ""} onClick={onClick}>
+        <button name={Categories.Doing} onClick={onClick}>
           Doing
         </button>
       )}
       {category !== Categories.To_Do && (
-        <button name={Categories.To_Do + ""} onClick={onClick}>
+        <button name={Categories.To_Do} onClick={onClick}>
           To Do
         </button>
       )}
       {category !== Categories.Done && (
-        <button name={Categories.Done + ""} onClick={onClick}>
+        <button name={Categories.Done} onClick={onClick}>
           Done
         </button>
       )}
