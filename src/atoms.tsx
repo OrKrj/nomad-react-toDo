@@ -1,9 +1,11 @@
 import { atom, selector } from "recoil";
 
+type categories = "To_Do" | "Doing" | "Done";
+
 export interface IToDo {
   text: string;
   // 자료형과 함께 특정 문자열을 타입으로 지정 가능
-  category: "To_Do" | "Doing" | "Done";
+  category: categories;
   id: number;
 }
 
@@ -12,7 +14,7 @@ export const toDoState = atom<IToDo[]>({
   default: [],
 });
 
-export const categoryState = atom({
+export const categoryState = atom<categories>({
   key: "category",
   default: "To_Do",
 });
